@@ -1,5 +1,6 @@
 import customtkinter
 import bcrypt
+import re
 import tkinter as tk
 from datetime import datetime
 from hashing import show_results
@@ -46,6 +47,17 @@ class EncryptorApp:
         password = self.entry.get()
         if not password:
             messagebox.showwarning("Advertencia", "Debe ingresar la contraseña!!")
+            return
+         if not re.search(r"[A-Za-z]", password):
+            messagebox.showerror("Error", "Debe ingresar almenos una letra [aA -zZ]")
+            return
+
+        if not re.search(r"\d", password):
+            messagebox.showerror("Error", "Debe ingresar almenos un número [0-9]")
+            return
+        
+        if not re.search(r"[!@#$%^&*]", password):
+            messagebox.showerror("Error", "Debe ingresar almenos un símbolo [!@#$%^&*]")
             return
         
         if not hasattr(self, "tree"):
