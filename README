@@ -1,0 +1,150 @@
+# 🔐 Passwords Encryptor (Tkinter + bcrypt)
+
+Aplicación de escritorio desarrollada en Python que permite **encriptar contraseñas**, visualizarlas en una tabla y exportarlas a un archivo `.txt`.
+
+---
+
+## 📌 Características
+
+* 🔑 Encriptación segura de contraseñas usando **bcrypt**
+* 🖥️ Interfaz gráfica con **CustomTkinter**
+* 📊 Visualización de resultados en una tabla (`Treeview`)
+* 🕒 Registro de la hora de encriptación
+* 📁 Exportación de datos a archivo `.txt`
+* ⚠️ Validaciones con mensajes interactivos
+
+---
+
+## 🧰 Tecnologías utilizadas
+
+* Python 3
+* `tkinter`
+* `customtkinter`
+* `bcrypt`
+* `tabulate`
+
+---
+
+## 📦 Instalación
+
+1. Clona este repositorio o descarga los archivos:
+
+```bash
+git clone https://github.com/tuusuario/password-encryptor.git
+cd password-encryptor
+```
+
+2. Instala las dependencias:
+
+```bash
+pip install customtkinter bcrypt tabulate
+```
+
+---
+
+## ▶️ Uso
+
+Ejecuta el archivo principal:
+
+```bash
+python main.py
+```
+
+### Flujo de uso:
+
+1. Escribe una contraseña en el campo de entrada.
+2. Haz clic en **"ENCRIPTAR"**.
+3. Se mostrará:
+
+   * Contraseña original
+   * Contraseña encriptada
+   * Hora del proceso
+4. Puedes:
+
+   * Ver los resultados desde el menú
+   * Exportarlos a un archivo `.txt`
+
+---
+
+## 📂 Estructura del proyecto
+
+```
+📁 proyecto/
+│
+├── main.py          # Interfaz principal
+├── hashing.py       # Lógica de tabla y archivo
+└── Encriptamientos.txt (generado automáticamente)
+```
+
+---
+
+## 🧠 Funcionamiento interno
+
+* Las contraseñas se convierten a bytes usando UTF-8:
+
+  ```python
+  password.encode("utf-8")
+  ```
+
+* Se genera un *salt* aleatorio:
+
+  ```python
+  bcrypt.gensalt()
+  ```
+
+* Se realiza el hash:
+
+  ```python
+  bcrypt.hashpw(password, salt)
+  ```
+
+* Se registra la hora con:
+
+  ```python
+  datetime.now().strftime("%H:%M:%S")
+  ```
+
+---
+
+## ⚠️ Validaciones implementadas
+
+* No permite encriptar si el campo está vacío
+* No permite generar archivo si la tabla no existe
+* No permite exportar si la tabla está vacía
+
+---
+
+## 📄 Ejemplo de salida (`Encriptamientos.txt`)
+
+```
+Passwords    Encrypted                             Hora
+-----------  ------------------------------------  --------
+123456       b'$2b$12$abc123...'                   14:32:10
+admin        b'$2b$12$xyz456...'                   14:33:05
+```
+
+---
+
+## 🚀 Posibles mejoras
+
+* Ocultar la contraseña original (solo mostrar hash)
+* Guardar en formatos como `.csv` o `.json`
+* Agregar autenticación de usuario
+* Implementar búsqueda o filtrado en la tabla
+* Mejorar el diseño UI/UX
+
+---
+
+## 👨‍💻 Autor
+
+Desarrollado como proyecto práctico para aprendizaje de:
+
+* Interfaces gráficas en Python
+* Seguridad básica (hashing)
+* Manejo de archivos
+
+---
+
+## 📜 Licencia
+
+Uso libre para fines educativos.
